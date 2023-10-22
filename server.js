@@ -32,6 +32,9 @@ const options = {
         servers: [
             {
                 url: 'http://localhost:8080'
+            },
+            {
+                url: 'https://ghn-job-portal.onrender.com'
             }
         ]
     },
