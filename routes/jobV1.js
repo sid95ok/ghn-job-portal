@@ -1,10 +1,11 @@
 import express from 'express';
-import * as userV1 from '../controllers/userV1.js';
+import * as jobV1 from '../controllers/jobV1.js';
 import authenticate from '../middlewares/auth.js';
 
 const router = express.Router();
 
 // Routes
-router.put('/update', authenticate, userV1.update);
+router.post('/create', jobV1.create);
+router.get('/list', authenticate, jobV1.list);
 
 export default router;

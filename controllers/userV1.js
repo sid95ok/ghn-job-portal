@@ -25,7 +25,6 @@ export const update = async (request, response, next) => {
         const updatedUser = await user.save();
         const token = user.createToken();
 
-        // Todo: remove password from user object
         console.log(`User details updated successfully`)
         user.password = undefined;
         response.status(200).send({

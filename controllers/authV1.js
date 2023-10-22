@@ -71,7 +71,6 @@ export const signup = async (request, response, next) => {
 
         const token = user.createToken();
 
-        // Todo: remove password from user object
         console.log(`New user signed up successfully`)
         user.password = undefined;
         response.status(201).send({

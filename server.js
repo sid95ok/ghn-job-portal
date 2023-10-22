@@ -8,6 +8,7 @@ import { errorMain } from './middlewares/error.js';
 
 import authRoutesV1 from './routes/authV1.js';
 import userRoutesV1 from './routes/userV1.js';
+import jobRoutesV1 from './routes/jobV1.js';
 
 // Environment initiation
 dotenv.config();
@@ -28,6 +29,7 @@ app.get('/', (request, response) => {
 });
 app.use('/auth/v1', authRoutesV1);
 app.use('/user/v1', userRoutesV1);
+app.use('/job/v1', jobRoutesV1);
 
 // Error Middlewares
 app.use(errorMain);
