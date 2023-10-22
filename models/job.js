@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { customAlphabet } from 'nanoid';
+import ShortUniqueId from 'short-unique-id';
 
 const job = new mongoose.Schema({
     jobId: {
@@ -43,8 +43,8 @@ const job = new mongoose.Schema({
 );
 
 job.methods.createJobId = function () {
-    const nanoid = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZ', 10);
-    return nanoid();
+    const { randomUUID } = new ShortUniqueId({ length: 10 });
+    return randomUUID();
 };
 
 job.methods.createDescription = function (requestBody) {
