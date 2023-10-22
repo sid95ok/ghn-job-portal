@@ -1,5 +1,7 @@
 // Module imports
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJsDoc from 'swagger-jsdoc';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -19,6 +21,26 @@ dotenv.config();
 // Database Connection
 databaseConnect();
 
+// API Swagger related declarations
+const options = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Get Hired Now - Job Portal',
+            description: 'This NodeJS web-app is a job portal designed to connect job seekers with diverse career opportunities, making the job search process easy and efficient.'
+        },
+        servers: [
+            {
+                url: 'http://localhost:8080'
+            }
+        ]
+    },
+    apis: [
+        './routes/*.js'
+    ]
+};
+const spec = swaggerJsDoc(options);
+
 // REST Object
 const app = express();
 
@@ -36,6 +58,7 @@ app.get('/', (request, response) => {
 app.use('/auth/v1', authRoutesV1);
 app.use('/user/v1', userRoutesV1);
 app.use('/job/v1', jobRoutesV1);
+app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(spec));
 
 // Error Middlewares
 app.use(errorMain);
