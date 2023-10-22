@@ -3,8 +3,8 @@ import jwt from 'jsonwebtoken';
 const authenticate = async (request, response, next) => {
     try {
         const authHeader = request.headers.authorization;
-        if (!authHeader || authHeader.notStartsWith(`Bearer`)) {
-            next(`Authentication Failed`);
+        if (!authHeader || !authHeader.startsWith(`Bearer`)) {
+            next(`AuthenticationFailed`);
         };
         const token = authHeader.split(' ')[1];
         const payload = jwt.verify(token, process.env.JWT_SECRET);
@@ -13,7 +13,7 @@ const authenticate = async (request, response, next) => {
         };
         next();
     } catch (error) {
-        next(`Authentication Failed`);
+        next(`AuthenticationFailed`);
     }
 };
 
