@@ -47,8 +47,9 @@ job.methods.createJobId = function () {
     return nanoid();
 };
 
-job.methods.createDescription = function () {
-    const description = `"${this.position} position at ${this.company}, offering a competitive ${this.salary} salary, located in ${this.city}, with ${jobType} work environment."`
+job.methods.createDescription = function (requestBody) {
+    var { position, company, city, jobType, skills, salary, description } = requestBody;
+    description = `${position} position at ${company}, offering a competitive ${salary} salary, located in ${city}, with ${jobType} work environment.`
     return description;
 };
 
