@@ -2,6 +2,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import helmet from 'helmet';
+import xssClean from 'xss-clean';
+import expressMongoSanitize from 'express-mongo-sanitize';
 
 import { databaseConnect } from './config/databaseConnection.js';
 import { errorMain } from './middlewares/error.js';
@@ -20,6 +23,9 @@ databaseConnect();
 const app = express();
 
 // Middlewares
+app.use(helmet());
+app.use(xssClean());
+app.use(expressMongoSanitize());
 app.use(express.json());
 app.use(cors());
 
