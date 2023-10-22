@@ -7,5 +7,7 @@ const router = express.Router();
 // Routes
 router.post('/create', jobV1.create);
 router.get('/list', authenticate, jobV1.list);
+router.get('/apply', authenticate, jobV1.apply);
+router.get('/listApplications', authenticate, jobV1.listApplications);
 
 export default router;
