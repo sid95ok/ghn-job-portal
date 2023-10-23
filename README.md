@@ -43,7 +43,9 @@ After logging in or signing up, the app is easy to use with the following featur
 - Safely log out from the website when your work is completed.
 
 ## Contribution
-Any pull requests (PRs) are welcomed. The developer is also working on Swagger documentation to make the project more accessible for future users.
+Any pull requests (PRs) are welcomed. The developer is also working on Swagger documentation to make the project more accessible for future users. Till then here is a postman collection - https://api.postman.com/collections/4386344-b75c7517-b593-4ccf-bcc0-cf5589ce1bb9?access_key=PMAT-01HDEMP82TJJ4XJNEYQGJCYN2E
+
+Need to add two env variables in postman - 'URLv1'(for local mode - [http://localhost:8080/api/v1](http://localhost:8080/api/v1)) and 'token'(generated using /login get API)
 
 ## Credits
 This project was solely developed by Siddhant Pathak.
