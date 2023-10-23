@@ -28,7 +28,7 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 // API Swagger related declarations
 const options = {
     definition: {
-        openapi: '3.0.0',
+        openapi: '3.0.3',
         info: {
             title: 'Get Hired Now - Job Portal',
             description: 'This NodeJS web-app is a job portal designed to connect job seekers with diverse career opportunities, making the job search process easy and efficient.'
@@ -74,8 +74,8 @@ app.get('*', (request, response) => {
 });
 
 // Constants
-const port = process.env.PORT;
-const mode = process.env.MODE;
+const port = process.env.PORT || 8080;
+const mode = process.env.MODE || 'development';
 
 // Listen
 app.listen(port, () => {
