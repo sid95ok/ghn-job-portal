@@ -62,7 +62,7 @@ const Application = () => {
                         <div key={record._id}>
                             <div className="card mb-3">
                                 <div className="card-body">
-                                    <h5 className="card-title"><Link to={`/jobDetail?jobId=${record.jobId.jobId}`}>{record.jobId.position}</Link> - <span style={{ color: 'green' }}>{record.applicationStatus} ({`${new Date(record.updatedAt).getDate()}-${new Date(record.updatedAt).getMonth()}-${new Date(record.updatedAt).getFullYear()}`})</span></h5>
+                                    <h5 className="card-title"><Link to={`/jobDetail?jobId=${record.jobId.jobId}`}>{record.jobId.position}</Link> ({record.jobId.yearsOfExp}) - <span style={{ color: 'green' }}>{record.applicationStatus} ({`${new Date(record.updatedAt).getDate()}-${new Date(record.updatedAt).getMonth()}-${new Date(record.updatedAt).getFullYear()}`})</span></h5>
                                     <h6 className="card-title">{record.jobId.company} - {record.jobId.city} ({record.jobId.jobType})</h6>
                                     <p style={{ color: 'grey' }} className="card-text">Compensation - {record.jobId.salary}</p>
                                 </div>

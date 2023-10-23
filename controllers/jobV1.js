@@ -54,7 +54,7 @@ export const list = async (request, response, next) => {
 
 export const create = async (request, response, next) => {
     try {
-        var { position, company, city, jobType, skills, salary, description } = request.body;
+        var { position, company, city, jobType, skills, salary, yearsOfExp, description } = request.body;
 
         const job = await jobModel();
         const jobId = job.createJobId();
@@ -63,7 +63,7 @@ export const create = async (request, response, next) => {
         }
 
         const newJob = await jobModel.create({
-            jobId, position, company, city, jobType, skills, salary, description
+            jobId, position, company, city, jobType, skills, salary, yearsOfExp, description
         });
 
         console.log(`Job opening added successfully`);
