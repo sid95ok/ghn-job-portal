@@ -13,7 +13,6 @@ const JobDetail = () => {
     const getJobDetail = async (page) => {
         try {
             const { data } = await API.get(`/job/list?jobId=${jobId}`, {});
-            console.log(data);
             if (data?.success && data?.jobs.length > 0) {
                 setData(data?.jobs[0]);
             }

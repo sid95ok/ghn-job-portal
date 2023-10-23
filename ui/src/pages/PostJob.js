@@ -7,7 +7,7 @@ const PostJob = () => {
     const [position, setPosition] = useState("");
     const [company, setCompany] = useState("");
     const [city, setCity] = useState("");
-    const [jobType, setJobType] = useState("Select Job Type");
+    const [jobType, setJobType] = useState("");
     const [skills, setSkills] = useState("");
     const [salary, setSalary] = useState("");
     const [yearsOfExp, setYearsOfExp] = useState("");
@@ -39,17 +39,15 @@ const PostJob = () => {
                             <div className="card-body">
                                 <form onSubmit={(e) => { return handlePostJob(e, position, company, city, jobType, skills, salary, yearsOfExp, description); }}>
                                     <div className="mb-3">
-                                        <div className="mb-2">Job Type</div>
-                                        <div className="dropdown form-label" htmlFor="jobType">
-                                            <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                {jobType}
-                                            </button>
-                                            <ul className="dropdown-menu form-control" name="jobType" id="jobType" value={jobType} onClick={(e) => setJobType(e.target.name)}>
-                                                <li><a className="dropdown-item" name='Hybrid'>Hybrid</a></li>
-                                                <li><a className="dropdown-item" name='Remote'>Remote</a></li>
-                                                <li><a className="dropdown-item" name='On-Site'>On-site</a></li>
-                                            </ul>
-                                        </div>
+                                        <form onClick={(e) => setJobType(e.target.value)} value={jobType}>
+                                            <div className="mb-2">Select Job Type</div>
+                                            &nbsp; <input type="radio" id="Hybrid" name="jobType" defaultValue="Hybrid" />
+                                            &nbsp; <label htmlFor="On-Site">Hybrid</label><br />
+                                            &nbsp; <input type="radio" id="On-Site" name="jobType" defaultValue="On-Site" />
+                                            &nbsp; <label htmlFor="On-Site">On-Site</label><br />
+                                            &nbsp; <input type="radio" id="Remote" name="jobType" defaultValue="Remote" />
+                                            &nbsp; <label htmlFor="Remote">Remote</label>
+                                        </form>
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="position" className="form-label">Position</label>
