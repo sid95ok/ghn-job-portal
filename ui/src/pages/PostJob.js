@@ -7,7 +7,7 @@ const PostJob = () => {
     const [position, setPosition] = useState("");
     const [company, setCompany] = useState("");
     const [city, setCity] = useState("");
-    const [jobType, setJobType] = useState("");
+    const [jobType, setJobType] = useState("Select Job Type");
     const [skills, setSkills] = useState("");
     const [salary, setSalary] = useState("");
     const [yearsOfExp, setYearsOfExp] = useState("");
@@ -17,12 +17,12 @@ const PostJob = () => {
         e.preventDefault();
         try {
             const data = await API.post(`/job/create`, { position, company, city, jobType, skills, salary, yearsOfExp, description });
-            if (data?.data.message) {
-                alert(data.data.message);
+            if (data?.data?.message) {
+                alert(data?.data?.message);
             }
             window.location.replace("/postJob");
         } catch (error) {
-            alert(error.response.data.message);
+            alert(error.response.data?.message);
             console.log(error);
         }
     }
@@ -38,6 +38,19 @@ const PostJob = () => {
                             </div>
                             <div className="card-body">
                                 <form onSubmit={(e) => { return handlePostJob(e, position, company, city, jobType, skills, salary, yearsOfExp, description); }}>
+                                    <div className="mb-3">
+                                        <div className="mb-2">Job Type</div>
+                                        <div className="dropdown form-label" htmlFor="jobType">
+                                            <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                {jobType}
+                                            </button>
+                                            <ul className="dropdown-menu form-control" name="jobType" id="jobType" value={jobType} onClick={(e) => setJobType(e.target.name)}>
+                                                <li><a className="dropdown-item" name='Hybrid'>Hybrid</a></li>
+                                                <li><a className="dropdown-item" name='Remote'>Remote</a></li>
+                                                <li><a className="dropdown-item" name='On-Site'>On-site</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                     <div className="mb-3">
                                         <label htmlFor="position" className="form-label">Position</label>
                                         <input type="text" className="form-control" name="position" placeholder="e.g - Backend Developer" value={position} onChange={(e) => setPosition(e.target.value)} />
@@ -55,15 +68,11 @@ const PostJob = () => {
                                         <input type="text" className="form-control" name="city" placeholder="Bengaluru, Karnataka" value={city} onChange={(e) => setCity(e.target.value)} />
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="jobType" className="form-label">Job Type (Choose one)</label>
-                                        <input type="text" className="form-control" name="jobType" placeholder="Hybrid / On-site / Remote" value={jobType} onChange={(e) => setJobType(e.target.value)} />
-                                    </div>
-                                    <div className="mb-3">
                                         <label htmlFor="skills" className="form-label">Skills Required</label>
                                         <input type="text" className="form-control" name="skills" placeholder="Add comma separated values - Python, AWS, Docker" value={skills} onChange={(e) => setSkills(e.target.value)} />
                                     </div>
                                     <div className="mb-3">
-                                        <label htmlFor="salary" className="form-label">Salary (approx)</label>
+                                        <label htmlFor="salary" className="form-label">Salary (approx - Optional)</label>
                                         <input type="text" className="form-control" name="salary" placeholder="Provide annual CTC with currency. e.g - $ 50000" value={salary} onChange={(e) => setSalary(e.target.value)} />
                                     </div>
                                     <div className="mb-3">
@@ -74,11 +83,6 @@ const PostJob = () => {
                                 </form>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className="row justify-content-center mt-3">
-                    <div className="col-md-6">
-                        <p>Already have an account? <a href="/login">Login</a></p>
                     </div>
                 </div>
             </div>

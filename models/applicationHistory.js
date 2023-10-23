@@ -8,7 +8,7 @@ const applicationHistory = new mongoose.Schema({
     },
     userId: {
         type: mongoose.Types.ObjectId,
-        ref: 'User.Id',
+        ref: 'User._id',
         required: [true, `User Ref cannot be empty`]
     },
     applicationStatus: {
@@ -22,6 +22,6 @@ const applicationHistory = new mongoose.Schema({
     }
 );
 
-applicationHistory.index({ jobId: 1, user: 1 }, { unique: true });
+applicationHistory.index({ jobId: 1, userId: 1 }, { unique: true });
 
 export default mongoose.model(`ApplicationHistory`, applicationHistory);

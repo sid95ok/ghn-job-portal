@@ -17,9 +17,8 @@ const Header = () => {
                 <div className="container-fluid ">
                     <div className="navbar-brand h1 ">
                         <Link to="/" className="nav-link">
-                            Get Hired Now
+                            <span style={{ color: 'white' }}>Get Hired Now</span>
                         </Link>
-
                     </div>
                     <ul className="navbar-nav flex-row">
                         <li className="nav-item mx-3">
@@ -31,12 +30,17 @@ const Header = () => {
                         </li>
                         <li className="nav-item mx-3">
                             <Link to="/postJob" className="nav-link">
-                                Post a Job
+                                Post Job
+                            </Link>
+                        </li>
+                        <li className="nav-item mx-3">
+                            <Link to="/posted" className="nav-link">
+                                Your Posted Jobs
                             </Link>
                         </li>
                         <li className="nav-item mx-3">
                             <Link to="/applications" className="nav-link">
-                                Applications
+                                Your Applications
                             </Link>
                         </li>
                         <li className="nav-item mx-3">
@@ -51,7 +55,7 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
-            </nav>
+            </nav >
             <br /><br /><br /><br />
         </>
     );

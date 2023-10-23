@@ -8,6 +8,7 @@ import JobDetail from './pages/JobDetail';
 import PostJob from './pages/PostJob';
 import ProtectedRoute from './components/Routes/ProtectedRoute';
 import PublicRoute from './components/Routes/PublicRoute';
+import Posted from './pages/Posted';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path='/applications' element={<ProtectedRoute><Applications /></ProtectedRoute>} />
         <Route path='/postJob' element={<ProtectedRoute><PostJob /></ProtectedRoute>} />
+        <Route path='/posted' element={<ProtectedRoute><Posted /></ProtectedRoute>} />
         <Route path='*' element={<Navigate to='/' />} />
       </Routes>
     </>

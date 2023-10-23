@@ -25,7 +25,7 @@ const job = new mongoose.Schema({
         default: 'On-Site'
     },
     skills: {
-        type: [String],
+        type: Array(String),
         required: [true, `Skills cannot be empty`]
     },
     salary: {
@@ -39,6 +39,11 @@ const job = new mongoose.Schema({
     description: {
         type: String,
         required: [true, `Description cannot be empty`]
+    },
+    userId: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User._id',
+        required: [true, `User Ref cannot be empty`]
     }
 },
     {
