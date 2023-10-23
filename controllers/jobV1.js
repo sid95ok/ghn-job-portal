@@ -27,18 +27,23 @@ export const list = async (request, response, next) => {
             query.skills = { $in: skills.split(',') };
         };
 
+
+        var jobs = await jobModel.find(query);
         const page = Number(request.query.page) || 1;
         const itemsPerPage = Number(request.query.items) || 10;
         const skipCount = (page - 1) * itemsPerPage;
+        var filteredJobs = await jobModel.find(query).sort({ createdAt: -1 }).skip(skipCount).limit(itemsPerPage);
 
-        var jobs = await jobModel.find(query).sort({ createdAt: -1 }).skip(skipCount).limit(itemsPerPage);
+        var totalPages = Math.ceil(jobs.length / itemsPerPage);
 
         response.status(200).send({
             success: true,
             message: `Jobs listed successfully.`,
-            jobCount: jobs.length,
+            jobCount: filteredJobs.length,
+            totalJobCount: jobs.length,
+            totalPages: totalPages,
             pageNumber: page,
-            jobs: jobs,
+            jobs: filteredJobs,
             error: ``
         })
     } catch (error) {
@@ -119,16 +124,27 @@ export const listApplications = async (request, response, next) => {
         const skipCount = (page - 1) * itemsPerPage;
 
         const userId = request.user.userId;
-        const query = { applicationStatus: status, userId: userId }
+        const query = { userId: userId }
+        if (status) {
+            query.applicationStatus = status
+        }
 
         var applications = await applicationHistoryModel.find(query)
             .populate({ path: 'jobId', model: 'Job' })
+            .sort({ createdAt: -1 })
+
+        var filteredApplications = await applicationHistoryModel.find(query)
+            .populate({ path: 'jobId', model: 'Job' })
             .sort({ createdAt: -1 }).skip(skipCount).limit(itemsPerPage);
+
+        var totalPages = Math.ceil(applications.length / itemsPerPage);
 
         response.status(200).send({
             success: true,
             message: `Applications listed successfully.`,
-            applicationCount: applications.length,
+            applicationCount: filteredApplications.length,
+            totalJobCount: applications.length,
+            totalPages: totalPages,
             pageNumber: page,
             applications: applications,
             error: ``
