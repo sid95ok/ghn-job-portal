@@ -69,7 +69,7 @@ app.use(errorMain);
 
 // UI
 app.use(express.static(path.join(__dirname, '/ui/build')));
-app.get('/', (request, response) => {
+app.get('*', (request, response) => {
     response.sendFile(path.join(__dirname, '/ui/build/index.html'));
 });
 
