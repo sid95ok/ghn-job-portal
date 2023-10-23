@@ -73,6 +73,12 @@ export const create = async (request, response, next) => {
             job: newJob
         });
     } catch (error) {
+        if (error.name == `ValidationError`) {
+            response.status(400).send({
+                success: false,
+                message: `It looks like you left a required field empty or in wrong format. Please make sure all fields are filled out to continue.`
+            });
+        }
         console.log(`Error while creating job opening.`);
         next(error);
     }
