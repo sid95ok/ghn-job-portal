@@ -61,7 +61,7 @@ const HomePage = () => {
                         <div key={record._id}>
                             <div className="card mb-3">
                                 <div className="card-body">
-                                    <h5 className="card-title"><Link to={`/jobDetail?jobId=${record.jobId}`}>{record.position}</Link></h5>
+                                    <h5 className="card-title"><Link to={`/jobDetail?jobId=${record.jobId}`}>{record.position}</Link> ({record.yearsOfExp})</h5>
                                     <h6 className="card-title">{record.company} - {record.city} ({record.jobType})</h6>
                                     <p style={{ color: 'grey' }} className="card-text">Compensation - {record.salary}</p>
                                 </div>

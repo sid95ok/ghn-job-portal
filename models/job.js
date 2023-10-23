@@ -30,7 +30,11 @@ const job = new mongoose.Schema({
     },
     salary: {
         type: String,
-        default: 'NA'
+        default: 'Not Available'
+    },
+    yearsOfExp: {
+        type: String,
+        required: [true, `Years of experience cannot be empty`]
     },
     description: {
         type: String,
