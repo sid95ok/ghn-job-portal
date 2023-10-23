@@ -7,7 +7,7 @@ export const errorMain = (error, request, response, next) => {
 
     if (error.name == `ValidationError`) {
         statusCode = 400;
-        errorMessage = Object.values(error.errors).map(item => item.message).join(',');
+        errorMessage = Object.values(error.errors).map(item => item?.message).join(',');
     };
 
     if (error == `AuthenticationFailed`) {

@@ -3,7 +3,7 @@ import Layout from "../components/shared/Layout/Layout";
 import API from "../services/api";
 import { Link } from "react-router-dom";
 
-const Application = () => {
+const Posted = () => {
 
     const [data, setData] = useState([]);
     const [pages, setPage] = useState([]);
@@ -14,9 +14,9 @@ const Application = () => {
     const getJobList = async (page) => {
         try {
             if (!page) { page = 1 }
-            const { data } = await API.get(`/job/listApplications?items=10&page=${page}`, {});
+            const { data } = await API.get(`/job/listPosted?items=10&page=${page}`, {});
             if (data?.success) {
-                setData(data?.applications);
+                setData(data?.jobs);
                 setJobs(data?.totalJobCount);
                 setTotalPages(data?.totalPages);
                 const range = Array.from({ length: data?.totalPages }, (_, index) => 1 + index);
@@ -55,15 +55,15 @@ const Application = () => {
         <Layout>
             <div>
                 <div className="container mt-4">
-                    <h1>Your Applied Job Applications - {totalJobCount}</h1><hr className="border-top" />
+                    <h1>Your Job Posts - {totalJobCount}</h1><hr className="border-top" />
 
                     {data?.map((record) => (
                         <div key={record?._id}>
                             <div className="card mb-3">
                                 <div className="card-body">
-                                    <h5 className="card-title"><Link to={`/jobDetail?jobId=${record?.jobId?.jobId}`}>{record?.jobId?.position}</Link> ({record?.jobId?.yearsOfExp}) - <span style={{ color: 'green' }}>{record?.applicationStatus} ({`${new Date(record?.updatedAt).getDate()}-${new Date(record?.updatedAt).getMonth()}-${new Date(record?.updatedAt).getFullYear()}`})</span></h5>
-                                    <h6 className="card-title">{record?.jobId?.company} - {record?.jobId?.city} ({record?.jobId?.jobType})</h6>
-                                    <p style={{ color: 'grey' }} className="card-text">Compensation - {record?.jobId?.salary}</p>
+                                    <h5 className="card-title"><Link to={`/jobDetail?jobId=${record?.jobId}`}>{record?.position}</Link> ({record?.yearsOfExp}) - <span style={{ color: 'green' }}>Created ({`${new Date(record?.updatedAt).getDate()}-${new Date(record?.updatedAt).getMonth()}-${new Date(record?.updatedAt).getFullYear()}`})</span></h5>
+                                    <h6 className="card-title">{record?.company} - {record?.city} ({record?.jobType})</h6>
+                                    <p style={{ color: 'grey' }} className="card-text">Compensation - {record?.salary}</p>
                                 </div>
                                 <hr className="border-top" />
                             </div>
@@ -93,4 +93,4 @@ const Application = () => {
     );
 };
 
-export default Application;
+export default Posted;

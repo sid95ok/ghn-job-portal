@@ -7,17 +7,17 @@ export const userLogin = createAsyncThunk(
         try {
             const { data } = await API.post("/auth/login", { email, password });
             //store token
-            if (data.success) {
-                alert(data.message);
-                localStorage.setItem("token", data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
+            if (data?.success) {
+                alert(data?.message);
+                localStorage.setItem("token", data?.token);
+                localStorage.setItem('user', JSON.stringify(data?.user));
                 window.location.replace("/");
             }
             return data;
         } catch (error) {
-            alert(error.response.data.message);
-            if (error.response && error.response.data.message) {
-                return rejectWithValue(error.response.data.message);
+            alert(error.response.data?.message);
+            if (error.response && error.response.data?.message) {
+                return rejectWithValue(error.response.data?.message);
             } else {
                 return rejectWithValue(error.message);
             }
@@ -32,17 +32,17 @@ export const userRegister = createAsyncThunk(
         try {
             const { data } = await API.post("/auth/signup", { name, email, password, city });
             if (data?.success) {
-                alert(data.message);
-                localStorage.setItem("token", data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
+                alert(data?.message);
+                localStorage.setItem("token", data?.token);
+                localStorage.setItem('user', JSON.stringify(data?.user));
                 window.location.replace("/");
             }
             return data;
         } catch (error) {
             console.log(error);
-            if (error.response && error.response.data.message) {
-                alert(error.response.data.message);
-                return rejectWithValue(error.response.data.message);
+            if (error.response && error.response.data?.message) {
+                alert(error.response.data?.message);
+                return rejectWithValue(error.response.data?.message);
             } else {
                 return rejectWithValue(error.message);
             }
@@ -56,17 +56,17 @@ export const userUpdate = createAsyncThunk(
         try {
             const { data } = await API.put("/user/update", { name, email, password, city });
             if (data?.success) {
-                alert(data.message);
-                localStorage.setItem("token", data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
+                alert(data?.message);
+                localStorage.setItem("token", data?.token);
+                localStorage.setItem('user', JSON.stringify(data?.user));
                 window.location.replace("/");
             }
             return data;
         } catch (error) {
             console.log(error);
-            if (error.response && error.response.data.message) {
-                alert(error.response.data.message);
-                return rejectWithValue(error.response.data.message);
+            if (error.response && error.response.data?.message) {
+                alert(error.response.data?.message);
+                return rejectWithValue(error.response.data?.message);
             } else {
                 return rejectWithValue(error.message);
             }
@@ -83,8 +83,8 @@ export const getCurrentUser = createAsyncThunk("auth/getCurrentUser", async ({ r
         }
     } catch (error) {
         console.log(error);
-        if (error.response && error.response.data.message) {
-            return rejectWithValue(error.response.data.message);
+        if (error.response && error.response.data?.message) {
+            return rejectWithValue(error.response.data?.message);
         } else {
             return rejectWithValue(error.message);
         }

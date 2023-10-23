@@ -58,12 +58,12 @@ const HomePage = () => {
                     <h1>Available Job Openings - {totalJobCount}</h1><hr className="border-top" />
 
                     {data?.map((record) => (
-                        <div key={record._id}>
+                        <div key={record?._id}>
                             <div className="card mb-3">
                                 <div className="card-body">
-                                    <h5 className="card-title"><Link to={`/jobDetail?jobId=${record.jobId}`}>{record.position}</Link> ({record.yearsOfExp})</h5>
-                                    <h6 className="card-title">{record.company} - {record.city} ({record.jobType})</h6>
-                                    <p style={{ color: 'grey' }} className="card-text">Compensation - {record.salary}</p>
+                                    <h5 className="card-title"><Link to={`/jobDetail?jobId=${record?.jobId}`}>{record?.position}</Link> ({record?.yearsOfExp})</h5>
+                                    <h6 className="card-title">{record?.company} - {record?.city} ({record?.jobType})</h6>
+                                    <p style={{ color: 'grey' }} className="card-text">Compensation - {record?.salary}</p>
                                 </div>
                                 <hr className="border-top" />
                             </div>
