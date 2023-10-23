@@ -7,6 +7,8 @@ import cors from 'cors';
 import helmet from 'helmet';
 import xssClean from 'xss-clean';
 import expressMongoSanitize from 'express-mongo-sanitize';
+import path from 'path';
+import * as url from 'url';
 
 import { databaseConnect } from './config/databaseConnection.js';
 import { errorMain } from './middlewares/error.js';
@@ -20,6 +22,8 @@ dotenv.config();
 
 // Database Connection
 databaseConnect();
+
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 // API Swagger related declarations
 const options = {
@@ -55,9 +59,6 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
-app.get('/', (request, response) => {
-    response.send('<h1>Welcome to Get Hired Now, the only job portal you will ever need.<h1>');
-});
 app.use('/api/v1/auth', authRoutesV1);
 app.use('/api/v1/user', userRoutesV1);
 app.use('/api/v1/job', jobRoutesV1);
@@ -65,6 +66,12 @@ app.use('/api/api-doc', swaggerUi.serve, swaggerUi.setup(spec));
 
 // Error Middlewares
 app.use(errorMain);
+
+// UI
+app.use(express.static(path.join(__dirname, '/ui/build')));
+app.get('/', (request, response) => {
+    response.sendFile(path.join(__dirname, '/ui/build/index.html'));
+});
 
 // Constants
 const port = process.env.PORT;

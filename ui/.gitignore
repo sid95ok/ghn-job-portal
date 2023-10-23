@@ -8,8 +8,8 @@
 # testing
 /coverage
 
-# production
-/build
+# production - for static hosting
+# /build
 
 # misc
 .DS_Store
