@@ -86,3 +86,20 @@ export const signup = async (request, response, next) => {
         next(error);
     }
 };
+
+export const getCurrentUser = async (request, response, next) => {
+    try {
+        const userId = request.user.userId;
+        const currentUser = await userModel.findOne({ _id: userId });
+        currentUser.password = undefined;
+        response.status(200).send({
+            success: true,
+            user: currentUser,
+            error: ``
+        });
+
+    } catch (error) {
+        console.log(`Error while signing up a new user.`);
+        next(error);
+    }
+};
