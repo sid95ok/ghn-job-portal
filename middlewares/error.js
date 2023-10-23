@@ -11,7 +11,7 @@ export const errorMain = (error, request, response, next) => {
     };
 
     if (error == `AuthenticationFailed`) {
-        statusCode = 404;
+        statusCode = 401;
         errorMessage = `Authentication Failed. Please try again after logging in`;
     };
 
