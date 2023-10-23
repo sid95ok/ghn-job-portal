@@ -58,9 +58,9 @@ app.use(cors());
 app.get('/', (request, response) => {
     response.send('<h1>Welcome to Get Hired Now, the only job portal you will ever need.<h1>');
 });
-app.use('/api/auth/v1', authRoutesV1);
-app.use('/api/user/v1', userRoutesV1);
-app.use('/api/job/v1', jobRoutesV1);
+app.use('/api/v1/auth', authRoutesV1);
+app.use('/api/v1/user', userRoutesV1);
+app.use('/api/v1/job', jobRoutesV1);
 app.use('/api/api-doc', swaggerUi.serve, swaggerUi.setup(spec));
 
 // Error Middlewares
