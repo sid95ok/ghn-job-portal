@@ -13,7 +13,7 @@ const Header = () => {
 
     return (
         <>
-            <nav className="navbar bg-dark border-bottom border-body">
+            <nav className="navbar fixed-top bg-dark border-bottom border-body">
                 <div className="container-fluid ">
                     <div className="navbar-brand h1 ">
                         <Link to="/" className="nav-link">
@@ -30,13 +30,18 @@ const Header = () => {
                             </p>
                         </li>
                         <li className="nav-item mx-3">
-                            <Link to="/profile" className="nav-link">
-                                Profile
+                            <Link to="/postJob" className="nav-link">
+                                Post a Job
                             </Link>
                         </li>
                         <li className="nav-item mx-3">
                             <Link to="/applications" className="nav-link">
                                 Applications
+                            </Link>
+                        </li>
+                        <li className="nav-item mx-3">
+                            <Link to="/profile" className="nav-link">
+                                Profile
                             </Link>
                         </li>
                         <li className="nav-item mx-3">
@@ -47,6 +52,7 @@ const Header = () => {
                     </ul>
                 </div>
             </nav>
+            <br /><br /><br /><br />
         </>
     );
 };
