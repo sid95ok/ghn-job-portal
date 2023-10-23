@@ -49,7 +49,7 @@ const JobDetail = () => {
                     <br /><br />
                     <span style={{ color: 'grey' }}>
                         <h5>Work Environment - {data?.jobType}</h5>
-                        <h5>Salay Compensation ~ {data?.salary}</h5>
+                        <h5>Salary Compensation ~ {data?.salary}</h5>
                         <h5>Skills Required - {data?.skills?.join(', ')}</h5>
                     </span><br />
                     <hr className="border-top" /><br />
